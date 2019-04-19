@@ -34,7 +34,7 @@ module.exports = class ok {
   let rankrole = message.guild.roles.find('name', rank1);
   if (playerGuildID === '5bfe87a06d7ba9963a35042a') {
     let rMember = message.guild.member(message.author)
-    let gRole = message.guild.roles.find('name', 'HT');
+    let gRole = message.guild.roles.find('name', '🍏普通會員🍏<Member>');
     await(rMember.addRole(rankrole.id));
     await(rMember.addRole(gRole.id));
     return message.reply("welcome");
