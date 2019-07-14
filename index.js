@@ -3,10 +3,11 @@ const bot = new Discord.Client();
 const token = process.env.token
 const { CommandHandler } = require("djs-commands")
 const active = new Map();
+const prefix = require('./commands/prefixes.json')
 const ownerID = '483564053898199040';
 const CH = new CommandHandler({
     folder: __dirname + '/commands/',
-    prefix: ['!']
+    prefix: [prefix.prefix]
   });
 
 bot.on('ready', () => {

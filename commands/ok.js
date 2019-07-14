@@ -1,7 +1,7 @@
 const HypixelAPI = require('hypixel-api');
 const Discord = require('discord.js');
 const token = process.env.hypixel;
-const HypixelClient = new HypixelAPI(token);
+const HypixelClient = new HypixelAPI(TOKEN);
 const rank = require('../calculater/rank.js')
 module.exports = class ok {
     constructor(){
@@ -54,8 +54,10 @@ module.exports = class ok {
   }
     let rMember = message.guild.member(message.author)
     let gRole = message.guild.roles.find('name', role);
+    let friend = message.guild.roles.find('name', '🌈好捧油🌈<Friend>');
     await(rMember.addRole(rankrole.id));
     await(rMember.addRole(role.id));
+    await(rMember.addRole(friend.id));
     return message.reply("welcome");
  }
  }

@@ -1,9 +1,9 @@
 const { Client, Util } = require('discord.js');
-const YouTube = require('simple-youtube-api');
+const youTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const GOOGLE_API_KEY = process.env.API;
 const client = new Client({ disableEveryone: true });
-const youtube = new YouTube(GOOGLE_API_KEY);
+const youtube = new youTube(GOOGLE_API_KEY);
 
 module.exports = class play {
     constructor(){
@@ -11,7 +11,7 @@ module.exports = class play {
             this.alias = ['p'],
             this.usage = '!play'
     }
-    async run(bot, message, args, ops) {
+async run(bot, message, args, ops) {
 const searchString = args.slice(1).join(' ');
 const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 const serverQueue = ops.active.get(message.guild.id) || {};
@@ -25,14 +25,16 @@ if (!permissions.has('SPEAK')) {
   return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
 }
 
-if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+if (url.match( /^.*(youtu.be\/|list=)([^#\&\?]*).*/)) {
   const playlist = await youtube.getPlaylist(url);
   const videos = await playlist.getVideos();
+  var video = await youtube.getVideo(url);
+  handleVideo(video, message, voiceChannel);
   for (const video of Object.values(videos)) {
     const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
     await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
   }
-  return message.channel.send(`??Playlist: **${playlist.title}** has been added to the queue!`);
+  return message.channel.send(`Playlist: **${playlist.title}** has been added to the queue!`);
 } else {
   try {
     var video = await youtube.getVideo(url);
@@ -62,7 +64,7 @@ Please provide a value to select one of the search results ranging from 1-10.
       var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
     } catch (err) {
       console.error(err);
-      return message.channel.send('?? I could not obtain any search results.');
+      return message.channel.send('😭 I could not obtain any search results.');
     }
   }
   return handleVideo(video, message, voiceChannel);
@@ -102,7 +104,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
 		if (playlist) return undefined;
-		else return message.channel.send(`??**${song.title}** has been added to the queue!`);
+		else return message.channel.send(`🎶**${song.title}** has been added to the queue!`);
 	}
 	return undefined;
 }
@@ -111,10 +113,10 @@ function play(guild, song) {
 	const serverQueue = ops.active.get(guild.id);
 
 	if (!song) {
-		serverQueue.voiceChannel.leave();
-		ops.active.delete(guild.id);
-		return;
-	}
+      serverQueue.voiceChannel.leave();
+  		ops.active.delete(guild.id);
+  		return;
+    }
 	console.log(serverQueue.songs);
 
 	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
@@ -127,7 +129,7 @@ function play(guild, song) {
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-	serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+	serverQueue.textChannel.send(`🎶Start playing: **${song.title}**`);
 }
 }
 }
