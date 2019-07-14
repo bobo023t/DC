@@ -1,7 +1,7 @@
 const HypixelAPI = require('hypixel-api');
 const Discord = require('discord.js');
 const token = process.env.hypixel;
-const HypixelClient = new HypixelAPI(TOKEN);
+const HypixelClient = new HypixelAPI(token);
 const rank = require('../calculater/rank.js')
 module.exports = class ok {
     constructor(){
