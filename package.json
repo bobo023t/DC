@@ -1,7 +1,6 @@
 {
   "name": "mybot",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
   "main": "index.js",
   "dependencies": {
     "discord.js": "^11.4.2",
@@ -21,6 +20,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "cookie",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobo023t/DC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bobo023t/DC/issues"
+  },
+  "homepage": "https://github.com/bobo023t/DC#readme",
+  "description": ""
 }
