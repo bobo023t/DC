@@ -1,4 +1,4 @@
-const { Client, Util } = require('discord.js');
+﻿const { Client, Util } = require('discord.js');
 const youTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const GOOGLE_API_KEY = process.env.API;
@@ -15,6 +15,7 @@ async run(bot, message, args, ops) {
 const searchString = args.slice(1).join(' ');
 const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 const serverQueue = ops.active.get(message.guild.id) || {};
+const stream = ytdl(url, { filter: 'audioonly' });
 const voiceChannel = message.member.voiceChannel;
 if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 const permissions = voiceChannel.permissionsFor(message.client.user);
@@ -119,7 +120,7 @@ function play(guild, song) {
     }
 	console.log(serverQueue.songs);
 
-	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+	const dispatcher = serverQueue.connection.playStream(steam)
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
