@@ -15,7 +15,7 @@ async run(bot, message, args, ops) {
 const searchString = args.slice(1).join(' ');
 const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 const serverQueue = ops.active.get(message.guild.id) || {};
-const stream = ytdl(url, { filter: 'audioonly' });
+
 const voiceChannel = message.member.voiceChannel;
 if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 const permissions = voiceChannel.permissionsFor(message.client.user);
@@ -119,8 +119,7 @@ function play(guild, song) {
   		return;
     }
 	console.log(serverQueue.songs);
-
-	const dispatcher = serverQueue.connection.playStream(stream)
+	const dispatcher = serverQueue.connection.playStream(ytdl(song.url, { filter: 'audioonly' });)
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
