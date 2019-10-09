@@ -120,7 +120,7 @@ function play(guild, song) {
     }
 	console.log(serverQueue.songs);
 
-	const dispatcher = serverQueue.connection.playStream(steam)
+	const dispatcher = serverQueue.connection.playStream(stream)
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
