@@ -2,6 +2,9 @@
   "name": "dc",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "npm": "6.9.0"
+  },
   "main": "index.js",
   "dependencies": {
     "djs-commands": "^1.2.2",
