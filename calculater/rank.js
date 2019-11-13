@@ -23,7 +23,7 @@ function generateFormattedRank(rank, prefix,) {
     case 'YOUTUBER':
       return 'Youtuber';
     default:
-      return 'None';
+      return 'none';
   }
 }
 function generateFormattedRank2(rank, prefix,) {
