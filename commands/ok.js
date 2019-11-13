@@ -31,7 +31,6 @@ module.exports = class ok {
   let playerGuildID = (await HypixelClient.findGuild('member', hypixelPlayer.uuid)).guild
   let playerGuildName = (await HypixelClient.getGuild(playerGuildID)).guild.name
   let rank1 = rank.generateFormattedRank(hypixelPlayer.rank || hypixelPlayer.packageRank || hypixelPlayer.newPackageRank)
-  message.channel.send(rank1);
   let rankrole = message.guild.roles.find('name', rank1);
   if (playerGuildID === '5bfe87a06d7ba9963a35042a') {
     let rMember = message.guild.member(message.author)
