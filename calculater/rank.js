@@ -5,23 +5,23 @@ function generateFormattedRank(rank, prefix,) {
   }
   switch (rank) {
     case 'VIP':
-      return '[VIP]';
+      return 'VIP';
     case 'VIP_PLUS':
-      return '[VIP+]';
+      return 'VIP+';
     case 'MVP':
-      return '[MVP]';
+      return 'MVP';
     case 'MVP_PLUS':
-      return `[MVP+]`;
+      return `MVP+`;
     case 'MVP_PLUS_PLUS':
-      return `[MVP++]`;
+      return `MVP++`;
     case 'HELPER':
-      return '[HELPER]';
+      return 'Hypixel Helper';
     case 'MODERATOR':
-      return '[MOD]';
+      return 'Hypixel Mod';
     case 'ADMIN':
-      return '[ADMIN]';
+      return 'Hypixel Admin';
     case 'YOUTUBER':
-      return '[YOUTUBER]';
+      return 'Youtuber';
     default:
       return 'None';
   }
