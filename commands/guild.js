@@ -65,4 +65,5 @@ async run(client, message, args) {
 				message.channel.send('**Ranks**')
 				message.channel.send(ranks.join(', '))
 
-}
+			}
+		}
