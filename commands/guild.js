@@ -13,7 +13,7 @@ module.exports = class guild {
 
 async run(client, message, args) {
                                 let gu = args.join('')
-				let guildData = (await hypixel.getGuildByName(gu)
+				let guildData = (await hypixel.getGuildByName(gu))
 				if(!guildData) return message.channel.send('這個公會不存在')
 				let guildRich = new Discord.RichEmbed()
 				var target = []
