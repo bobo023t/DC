@@ -1,43 +1,62 @@
+const {Hypixel, Mojang} = require('hypixel-node');
+const hypixel = new Hypixel(process.env.hypixel);
 const Discord = require('discord.js')
-const HypixelAPI = require('hypixel-api')
-const calculater = require('../calculater/3.js')
-const token = process.env.hypixel;
-const HypixelClient = new HypixelAPI(token)
 const moment = require('moment')
-module.exports = class guild {
-    constructor(){
-            this.name = 'guild',
-            this.alias = ['g'],
-            this.usage = '!guild'
-    }
-    async run(bot, message, args, ops) {
-      args.shift();
-      let gname = args.join(' ');
-      message.channel.send(gname)
-      message.channel.startTyping()
-				let targetGuild = await HypixelClient.findGuild('name', gname)
-				message.channel.stopTyping()
-				if (targetGuild.guild === null) {
-					message.channel.send('Hmm, that guild doesn\'t seem to exist!')
-					return
-				}
+const calculater = require('../calculater/3.js')
+const mojang = new Mojang();
 
-				let guildData = (await HypixelClient.getGuild(targetGuild.guild)).guild
+exports.run = async(client, message, args) => {
 
+				let guildData = (await hypixel.getGuildByName(args[0]))
+				if(!guildData) return message.channel.send('這個公會不存在')
 				let guildRich = new Discord.RichEmbed()
-
+				var target = []
+				var i = 0
+				let a = new Promise((resolve, reject) => {
+                guildData.members.forEach(element => {
+					mojang.getName(element.uuid)
+					.then(name => {
+						target.push(name)
+					    i++
+						console.log(i)
+						if(guildData.members.length <= i) {
+							resolve(target)
+						} 
+					})
+					.catch(err => console.log(err))
+				});
+				
+				
+			})
+			var ranks = []
+			    guildData.ranks.forEach(element => {
+                   ranks.push(element.name)
+				});
+				var preferredGames = ''
+                a.then(target => {
+					console.log(guildData.preferredGames)
+				if(!guildData.preferredGames[0]) {
+					preferredGames = 'no'
+				}else{
+					preferredGames = guildData.preferredGames
+				}
 				guildRich.setThumbnail('https://hypixel.net/data/guild_banners/100x200/' + guildData._id + '.png')
 				guildRich.setTitle('Hypixel Guild: ' + guildData.name + ' [' + guildData.tag + ']')
 				guildRich.setFooter('Bot | Created by cookie')
 				guildRich.setColor('#2DC7A1')
 				guildRich.setURL('https://hypixel.net/guilds/' + guildData._id + '/')
-        guildRich.addField('TAG', guildData.tag, true)
+                guildRich.addField('TAG', guildData.tag, true)
 				guildRich.addField('Member Count', guildData.members.length, true)
-				guildRich.addField('PeferredGames', guildData.preferredGames, true)
+				guildRich.addField('PeferredGames', preferredGames, true)
 				guildRich.addField('Created', moment(guildData.created).calendar(), true)
 				guildRich.addField('Exp', guildData.exp, true)
 				guildRich.addField('Level', calculater.getLevel(guildData.exp), true)
 
 				message.channel.send(guildRich)
-			}
-    }
+				message.channel.send('**Members**')
+				message.channel.send(target.join(', '))
+				})
+				message.channel.send('**Ranks**')
+				message.channel.send(ranks.join(', '))
+
+}
