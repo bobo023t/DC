@@ -4,10 +4,16 @@ const Discord = require('discord.js')
 const moment = require('moment')
 const calculater = require('../calculater/3.js')
 const mojang = new Mojang();
+module.exports = class guild {
+    constructor(){
+            this.name = 'guild',
+            this.alias = [''],
+            this.usage = '!guild'
+    }
 
-exports.run = async(client, message, args) => {
-
-				let guildData = (await hypixel.getGuildByName(args[0]))
+async run(client, message, args) {
+                                let gu = args.join('')
+				let guildData = (await hypixel.getGuildByName(gu)
 				if(!guildData) return message.channel.send('這個公會不存在')
 				let guildRich = new Discord.RichEmbed()
 				var target = []
