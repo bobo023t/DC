@@ -16,6 +16,7 @@
     "moment": "^2.24.0",
     "node-opus": "^0.3.2",
     "utility": "^1.16.1",
+    "simple-youtube-api": "^5.2.1",
     "ytdl-core": "^0.29.1"
   },
   "devDependencies": {},
