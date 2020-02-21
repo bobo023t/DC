@@ -5,7 +5,7 @@ const { CommandHandler } = require("djs-commands")
 const active = new Map();
 const prefix = require('./commands/prefixes.json')
 const ownerID = '483564053898199040';
-const ver = require('C:/Users/Bobo/Desktop/DC-master/verfify/mc.js')
+const ver = require('./verfify/mc.js')
 const fs = require('fs')
 const CH = new CommandHandler({
     folder: __dirname + '/commands/',
