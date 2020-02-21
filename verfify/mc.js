@@ -38,7 +38,6 @@ exports.run = async (client, message, user) => {
                     .then(target => target.setNickname(name + '<' + '>'))
             } else {
                 var t1 = await hypixel.getPlayer(mcname)
-                console.log(t1)
                 if (!t1) {
                     while (!boo) {
                         tar1 = await message.channel.send(`${user}請輸入有效的mc id`)
