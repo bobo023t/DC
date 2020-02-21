@@ -14,6 +14,7 @@ var tar
 var name
 var mcname
 var boo = false
+var role
 exports.run = async (client, message, user) => {
     var mee = await message.channel.send(`${user}請輸入你的暱稱`)
     response = await message.channel.awaitMessages(m => m.author.id === user.id, {
@@ -98,7 +99,7 @@ exports.run = async (client, message, user) => {
                       await(user1.addRole(gRole.id));
                       return;
                     }else {
-                      let role = message.guild.roles.find('name', playerGuildName);
+                      role = message.guild.roles.find('name', playerGuildName);
                       if (!role) {
                         try{
                         role = await message.guild.createRole({
