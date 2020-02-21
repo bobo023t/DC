@@ -95,7 +95,7 @@ bot.on("message", (message) => {
   });
 });
 bot.on('messageReactionAdd', (reaction, user) => {
-    if(reaction.message.id == target || target1){
+    if(reaction.message.id == target || reaction.message.id == target1){
       if (user.bot) return;
       reaction.remove(user)
       ver.run(bot, reaction.message, user)
