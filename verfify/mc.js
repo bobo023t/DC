@@ -113,6 +113,7 @@ exports.run = async (client, message, user) => {
                     }
                   }
                       let friend = message.guild.roles.find('name', '🌈好捧油🌈<Friend>');
+                      await(user1.addRole(role.id));
                       await(user1.addRole(friend.id));
                    }
             }
