@@ -7,6 +7,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "minimist": ">=0.2.1"
     "djs-commands": "^1.2.2",
     "discord.js": "^11.4.2",
     "hypixel-node": "^1.2.1",
