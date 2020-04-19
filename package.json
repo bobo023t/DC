@@ -1,24 +1,27 @@
 {
-  "name": "dc",
+  "name": "awa",
   "version": "1.0.1",
-  "description": "",
   "engines": {
     "node": "10.x"
   },
   "main": "index.js",
   "dependencies": {
-    "minimist": ">=0.2.1"
-    "djs-commands": "^1.2.2",
+    "axios": "^0.19.0",
     "discord.js": "^11.4.2",
-    "hypixel-node": "^1.2.1",
+    "djs-commands": "^1.2.2",
+    "dotenv": "^8.2.0",
     "hypixel": "^1.0.3",
     "hypixel-api": "^1.1.0",
+    "hypixel-node": "^1.2.1",
     "hypixelconstants": "^3.0.4",
     "moment": "^2.24.0",
     "node-opus": "^0.3.2",
-    "utility": "^1.16.1",
+    "request-promise": "^4.2.5",
+    "safe-browse": "^1.0.1",
+    "safe-browse-url-lookup": "^0.1.0",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^0.29.1"
+    "utility": "^1.16.1",
+    "ytdl-core": "^1.0.9"
   },
   "devDependencies": {},
   "scripts": {
@@ -28,10 +31,11 @@
     "type": "git",
     "url": "git+https://github.com/bobo023t/DC.git"
   },
-  "author": "",
+  "author": "candy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bobo023t/DC/issues"
   },
-  "homepage": "https://github.com/bobo023t/DC#readme"
+  "homepage": "https://github.com/bobo023t/DC#readme",
+  "description": ""
 }
